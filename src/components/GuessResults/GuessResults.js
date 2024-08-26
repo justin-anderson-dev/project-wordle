@@ -3,7 +3,7 @@ import Guess from '../Guess/Guess';
 import { range } from '../../utils';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
-function GuessResults({ guesses }) {
+function GuessResults({ guesses, answer }) {
 	console.log('guesses: ', guesses);
 	const indexes = range(0, NUM_OF_GUESSES_ALLOWED);
 	console.log('indexes: ', indexes);
@@ -14,6 +14,7 @@ function GuessResults({ guesses }) {
 				<Guess
 					key={guesses[num] + '-' + num.toString()}
 					guess={guesses[num]}
+					answer={answer}
 				/>
 			))}
 		</div>

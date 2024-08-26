@@ -1,13 +1,24 @@
 import React from 'react';
+import { checkGuess } from '../../game-helpers';
+import { range } from '../../utils';
 
-function Guess({ guess }) {
+function Guess({ guess, answer }) {
+	const guessIndexes = range(0, 5);
+	let checkedGuess = [];
+	if (guess) {
+		checkedGuess = checkGuess(guess, answer);
+	}
+
 	return (
 		<p className='guess'>
-			<span className='cell'>{guess ? guess[0] : ''}</span>
-			<span className='cell'>{guess ? guess[1] : ''}</span>
-			<span className='cell'>{guess ? guess[2] : ''}</span>
-			<span className='cell'>{guess ? guess[3] : ''}</span>
-			<span className='cell'>{guess ? guess[4] : ''}</span>
+			{guessIndexes.map((num) => (
+				<span
+					className={`cell ${guess ? checkedGuess[num].status : ''}`}
+					key={num}
+				>
+					{guess ? checkedGuess[num].letter : ''}
+				</span>
+			))}
 		</p>
 	);
 }
